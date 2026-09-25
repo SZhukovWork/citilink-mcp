@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "citilink-mcp"
+version = "0.1.0"
+description = "MCP server for Citilink (citilink.ru): live city prices with labelled club price and bonuses, per-product ratings, stores and pickup, reviews, Q&A, markdown items"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["mcp", "citilink", "electronics", "price-comparison", "llm-tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+    "mcp>=2.2,<3",
+    "requests>=2.31",
+]
+
+[project.urls]
+Homepage = "https://github.com/SZhukovWork/citilink-mcp"
+Repository = "https://github.com/SZhukovWork/citilink-mcp"
+Issues = "https://github.com/SZhukovWork/citilink-mcp/issues"
+Changelog = "https://github.com/SZhukovWork/citilink-mcp/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+citilink-mcp = "citilink_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/citilink_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: hits the real citilink.ru (deselected unless -m live)"]
+addopts = "-m 'not live'"
