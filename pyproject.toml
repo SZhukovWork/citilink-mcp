@@ -31,7 +31,7 @@ Changelog = "https://github.com/SZhukovWork/citilink-mcp/blob/main/CHANGELOG.md"
 dev = ["pytest>=8"]
 
 [project.scripts]
-citilink-mcp = "citilink_mcp.server:main"
+citilink-mcp = "citilink_mcp.lazy_stdio:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/citilink_mcp"]
